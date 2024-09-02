@@ -62,7 +62,7 @@ const questOverrideActions = [ // digit key: link to quest
                     if (SWsearch) SWsearch.click();
                     else if (SWshop) SWshop.click();
                 } else if (location.pathname.match(/halloween|island|winter/)) {
-                       let formbuttons = document.getElementById("page_content").querySelectorAll("form[action=*\"accept\"] .form-control, .form-control[type=button]");
+                       let formbuttons = document.getElementById("page_content").querySelectorAll("form[action*=\"accept\"] .form-control, .form-control[type=button]");
                        if (formbuttons.length >1) {
 			formbuttons[0].click(); // Submit quest
                         } else {   
