@@ -62,12 +62,12 @@ const questOverrideActions = [ // digit key: link to quest
                     if (SWsearch) SWsearch.click();
                     else if (SWshop) SWshop.click();
                 } else if (location.pathname.match(/halloween|island|winter/)) {
-                    const questStart = document.getElementById("page_content").querySelector("form[action*='accept'] .form-control");
-                    const questComplete = document.getElementById("page_content").querySelector(".form-control[onclick*='complete']");
-                    const questRestart = document.getElementById("page_content").querySelector(".form-control:not([value*='Return'])");
-                    if (questStart) questStart.click();
-                    else if (questComplete) questComplete.click();
-                    else if (questRestart) questRestart.click();
+                       let formbuttons = document.getElementById("page_content").querySelectorAll("form[action=*\"accept\"] .form-control, .form-control[type=button]");
+                       if (formbuttons.length >1) {
+			formbuttons[0].click(); // Submit quest
+                        } else {   
+				window.location.reload(); // Refresh failed quest                   
+			}
                 } else if (location.pathname.match(/dicearoo/)) {
                     const dicearooRA = document.querySelector("form[id='roll-again'] > input[type='submit']");
                     const dicearooPM = document.querySelector("input[value='Press Me']");
