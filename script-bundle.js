@@ -102,20 +102,20 @@ const questOverrideActions = [ // digit key: link to quest
             case "ArrowLeft":
                 arrowKeyCount++; //select the first item with left arrow
                 if (location.pathname.match(/halloween|island|winter|faerieland/) && arrowKeyCount <= document.querySelector(".itemList").childElementCount) {
-					let itemlist = document.querySelectorAll(".shop-item");
-					if (itemlist.length == 0 ) {
-						itemlist = document.querySelectorAll(".quest-item");
-					}
-					if ( !$('input:focus').length > 0 ) {
-						if (arrowKeyCount > 0 ) {
-					    	let item = itemlist[arrowKeyCount-1].querySelector(`img.search-helper-sdb-exists`);
-					    	if (item != null) {
-								item.click();
-					    	} else {
-			                	itemlist[arrowKeyCount-1].querySelector(`img.search-helper-sw`).click();
-		            		}
-        				}
-    				}
+                let itemlist = document.querySelectorAll(".shop-item");
+                if (itemlist.length == 0 ) {
+                    itemlist = document.querySelectorAll(".quest-item");
+                }
+                if ( !$('input:focus').length > 0 ) {
+                    if (arrowKeyCount > 0 ) {
+                        let item = itemlist[arrowKeyCount-1].querySelector(`img.search-helper-sdb-exists`);
+                        if (item != null) {
+                            item.click();
+                        } else {
+                            itemlist[arrowKeyCount-1].querySelector(`img.search-helper-sw`).click();
+                        }
+                    }
+                }
                 } break;
             case "Digit0":
                 digitKeyCount++; //falls through
