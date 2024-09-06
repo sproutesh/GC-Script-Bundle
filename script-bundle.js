@@ -62,12 +62,12 @@ const questOverrideActions = [ // digit key: link to quest
                     if (SWsearch) SWsearch.click();
                     else if (SWshop) SWshop.click();
                 } else if (location.pathname.match(/halloween|island|winter/)) {
-                       let formbuttons = document.getElementById("page_content").querySelectorAll("form[action*=\"accept\"] .form-control, .form-control[type=button]");
+                       let formbuttons = document.getElementById("page_content").querySelectorAll("form .form-control:not([type=\"text\"]), .form-control[type=button]");
                        if (formbuttons.length >1) {
-			formbuttons[0].click(); // Submit quest
-                        } else {   
-				window.location.reload(); // Refresh failed quest                   
-			}
+                           formbuttons[0].click(); // Submit quest
+                       } else {
+                           window.location.reload(); // Refresh failed quest
+                       }
                 } else if (location.pathname.match(/dicearoo/)) {
                     const dicearooRA = document.querySelector("form[id='roll-again'] > input[type='submit']");
                     const dicearooPM = document.querySelector("input[value='Press Me']");
@@ -102,17 +102,20 @@ const questOverrideActions = [ // digit key: link to quest
             case "ArrowLeft":
                 arrowKeyCount++; //select the first item with left arrow
                 if (location.pathname.match(/halloween|island|winter|faerieland/) && arrowKeyCount <= document.querySelector(".itemList").childElementCount) {
-                    let itemInInv = document.querySelector(`.itemList .shop-item:nth-child(${arrowKeyCount}) img.search-helper-in-inv`);
-                    let itemInSDB = document.querySelector(`.itemList .shop-item:nth-child(${arrowKeyCount}) img.search-helper-sdb-exists`);
-                    if (itemInInv) {
-                        console.log("since the item is already in your inv, you don't need to search anywhere for it!");
-                        break;
-                    }
-                    else if (itemInSDB) { //if the item already exists in your SDB, click that icon to get it
-                        itemInSDB.click();
-                    } else { //if neither, search it on the SW
-                        document.querySelector(`.itemList .shop-item:nth-child(${arrowKeyCount}) img.search-helper-sw`).click();
-                    }
+					let itemlist = document.querySelectorAll(".shop-item");
+					if (itemlist.length == 0 ) {
+						itemlist = document.querySelectorAll(".quest-item");
+					}
+					if ( !$('input:focus').length > 0 ) {
+						if (arrowKeyCount > 0 ) {
+					    	let item = itemlist[arrowKeyCount-1].querySelector(`img.search-helper-sdb-exists`);
+					    	if (item != null) {
+								item.click();
+					    	} else {
+			                	itemlist[arrowKeyCount-1].querySelector(`img.search-helper-sw`).click();
+		            		}
+        				}
+    				}
                 } break;
             case "Digit0":
                 digitKeyCount++; //falls through
