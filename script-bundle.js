@@ -137,7 +137,7 @@ if (location.pathname.match(/foodclub\/current_bets/)) fcBetCount();
 if (location.pathname.match(/lottery/) && lotteryTicketModel) lotteryTicketNumbers();
 if (location.pathname.match(/wishing/) && wwFillInHelp) {
     document.querySelector("input[name=donation]").value = wwDonationAmount;
-    document.querySelector("input[name=wish'").value = wwItemChoice;}
+    document.querySelector("input[name=wish]").value = wwItemChoice;}
 
 window.addEventListener("keydown", (event) => { // credit to Z and Dij
     if(event.target.matches("input[type='text'], input[type='search'], input[type='number'], input[type='password'], textarea, [contenteditable=true]")) {return;}
@@ -412,7 +412,7 @@ window.addEventListener("keydown", (event) => { // credit to Z and Dij
             } break;
         // quick navigation for Dailies, Timelines, Quests, and Water(fishing)
         case "KeyD": //Dailies
-            if (!dKeyNavigation) {
+            if (dKeyNavigation) {
                 let dArr = [...document.querySelectorAll('div.dailies a')]?.sort((a, b) =>
                                parseInt(a.parentElement.style.order) - parseInt(b.parentElement.style.order)).map((e,i,arr) => {
                                    if (e.href.match(/turmaculus|games\/featured/)) {return} else return e; }).filter(Boolean);
