@@ -176,11 +176,11 @@ window.addEventListener("keydown", (event) => { // credit to Z and Dij
                 const questStart = document.querySelector("#page_content form[action*='accept'] .form-control");
                 const questComplete = document.querySelector("#page_content .form-control[onclick*='complete']");
                 const questRestart = document.querySelector("#page_content .form-control:not([value*='Return'])");
-                const formbuttons = document.querySelectorAll("#page_content form .form-control:not([type=\"text\"]), .form-control[type=button]");
+                const formButtons = document.querySelectorAll("#page_content form .form-control:not([type=\"text\"]), .form-control[type=button]");
                 if (questStart) questStart.click();
                 else if (questComplete) questComplete.click();
                 else if (questRestart) questRestart.click();
-                else if (!formbuttons) {window.location.reload();}
+                else if (formButtons.length === 1) {window.location.reload();}
             } else if (location.pathname.match(/dicearoo/)) {
                 const dicearooRA = document.querySelector("form[id='roll-again'] > input[type='submit']");
                 const dicearooPM = document.querySelector("input[value='Press Me']");
