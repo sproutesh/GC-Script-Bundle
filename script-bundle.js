@@ -142,6 +142,7 @@ if (location.pathname.match(/wishing/) && wwFillInHelp) {
 window.addEventListener("keydown", (event) => { // credit to Z and Dij
     if(event.target.matches("input[type='text'], input[type='search'], input[type='number'], input[type='password'], textarea, [contenteditable=true]")) {return;}
     if(event.isComposing) {return;} //if entering text in a text box, don't record the event
+    if(event.repeat) {return;} //don't respond to someone holding down a key such that it repeats
     if(event.altKey) {return;} //if pressing alt,
     if(event.ctrlKey) {return;} //           ctrl,
     if(event.shiftKey) {return;} //          shift,
@@ -149,9 +150,9 @@ window.addEventListener("keydown", (event) => { // credit to Z and Dij
     let bdStrMedW = 0;
     let arrowKeyCount = 0;
     let digitKeyCount = 0; //initialize some useful variables
-    switch (event.key) {
+    switch (event.code) {
     //Space - select all in Bilge Dice and Scorchy Slots, plus general "click confirm"
-        case " ":
+        case "Space":
             event.preventDefault();
             if (location.pathname.match(/bilgedice\/play/)) {
                 bilgeDice('Space'); break; //prevent fall-through when playing Bilge Dice since Space is used differently
