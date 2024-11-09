@@ -310,14 +310,14 @@ window.addEventListener("keydown", (event) => { // credit to Z and Dij
             if (location.pathname.match(/witchtower|braintree|esophagor|kitchen|snowfaerie|employ|darkfaerie/)) {// credit to Z and Dij
                 let questItemList = document.querySelectorAll(".shop-item");
                 if (!questItemList.length) questItemList = document.querySelectorAll(".quest-item");
-                if (arrowKeyCount < questItemList.length) {
-                    let itemInInv = questItemList[arrowKeyCount].querySelector(`img.search-helper-in-inv`);
-                    let itemInSDB = questItemList[arrowKeyCount].querySelector(`img.search-helper-sdb-exists`);
+                if (arrowKeyCount-1 < questItemList.length) {
+                    let itemInInv = questItemList[arrowKeyCount-1].querySelector(`img.search-helper-in-inv`);
+                    let itemInSDB = questItemList[arrowKeyCount-1].querySelector(`img.search-helper-sdb-exists`);
                     if (itemInInv) {console.log("since the item is already in your inv, you don't need to search anywhere for it!");break;}
                     else if (itemInSDB) { //if the item already exists in your SDB, click that icon to get it
                     itemInSDB.click();
                     } else { //if neither, search it on the SW
-                        questItemList[arrowKeyCount].querySelector(`img.search-helper-sw`).click();
+                        questItemList[arrowKeyCount-1].querySelector(`img.search-helper-sw`).click();
                     }
                 } else {break;}
             } else if (location.pathname.match(/dome\/1p/) && document.querySelector('#bd-form select#ability.form-control')) {
